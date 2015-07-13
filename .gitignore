@@ -1,6 +1,9 @@
-/.idea
-/target/
-/.project
-/.classpath
-/.README.md.html
 *.iml
+.idea/
+*.log
+*.swp
+target/
+.settings
+.project
+.classpath
+.checkstyle
