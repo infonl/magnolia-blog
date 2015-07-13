@@ -318,7 +318,8 @@ public class SaveWordpressBlogDialogAction extends AbstractAction<SaveWordpressB
 		String intitialFirstName = node.getProperty("firstName").getString();
 		String firstName = StringUtils.isNotBlank(intitialFirstName) ? intitialFirstName.trim() : intitialFirstName;
 		String lastName = node.getProperty("lastName").getString().trim();
-		return Path.getValidatedLabel((firstName.charAt(0) + lastName.replaceAll("\\s+", "")).toLowerCase());
+		char firstChar = StringUtils.isNotBlank(firstName) ? firstName.charAt(0) : 'X';
+		return Path.getValidatedLabel(firstChar + lastName.replaceAll("\\s+", "")).toLowerCase();
 	}
 
 	/**
