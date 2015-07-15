@@ -80,7 +80,8 @@ public class BlogPostImageImporter {
 	 * @throws ActionExecutionException
 	 */
 	public String startImporting() throws ActionExecutionException {
-		importImagesByTag("a", "href");
+		// Info.nl: disable for now because this results in exceptions and a broken import
+		//importImagesByTag("a", "href");
 		importImagesByTag("img", "src");
 		return blogPostContent.html();
 	}
@@ -92,10 +93,16 @@ public class BlogPostImageImporter {
 	 * @param urlTag     the url tag to process
 	 * @throws ActionExecutionException
 	 */
-	private void importImagesByTag(String elementTag, String urlTag) throws ActionExecutionException {
+	private void importImagesByTag(String elementTag, String urlTag) {
 		Elements elements = blogPostContent.getElementsByTag(elementTag);
 		for (Element element : elements) {
-			importImage(element, urlTag);
+			// Info.nl: catch exceptions here because on image errors we do not want
+			// to cancel the import!
+			try {
+				importImage(element, urlTag);
+			} catch (ActionExecutionException e) {
+				log.error("Error importing image", e);
+			}
 		}
 	}
 
