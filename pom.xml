@@ -6,11 +6,11 @@
   <artifactId>magnolia-blogs-module</artifactId>
   <version>1.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>Tricode Magnolia Blog Module</name>
+  <name>Info.nl extensions on the Tricode Magnolia Blog Module</name>
     <description>This module contains a Blog app for Magnolia CMS</description>
     <organization>
-        <name>Tricode Business Integrators B.V.</name>
-        <url>http://www.tricode.nl</url>
+        <name>Info.nl</name>
+        <url>http://info.nl</url>
     </organization>
 
   <properties>
