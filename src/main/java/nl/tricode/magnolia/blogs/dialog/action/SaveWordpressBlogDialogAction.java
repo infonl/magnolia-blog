@@ -179,7 +179,7 @@ public class SaveWordpressBlogDialogAction extends AbstractAction<SaveWordpressB
 		Hashtable hashTable = new Hashtable();
 		hashTable.put("number", 254);
 
-      request.addElement(blogID);
+		request.addElement(blogID);
 		request.addElement(username);
 		request.addElement(password);
 		request.addElement(hashTable);
@@ -223,7 +223,7 @@ public class SaveWordpressBlogDialogAction extends AbstractAction<SaveWordpressB
 				blogPostNode.setProperty(BlogsNodeTypes.Blog.PROPERTY_AUTHOR, author);
 			}
 
-         blogPostNode.setProperty(BlogsNodeTypes.Blog.PROPERTY_COMMENTS_ENABLED, true);
+			blogPostNode.setProperty(BlogsNodeTypes.Blog.PROPERTY_COMMENTS_ENABLED, true);
 			blogPostNode.setProperty("mgnl:created", date);
 			blogPostNode.setProperty("mgnl:lastModified", dateModified);
 
