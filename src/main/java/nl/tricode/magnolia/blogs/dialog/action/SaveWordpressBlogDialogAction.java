@@ -379,18 +379,10 @@ public class SaveWordpressBlogDialogAction extends AbstractAction<SaveWordpressB
 	 * firstName. lastName = eric firstName = tabli The node name is etabli
 	 */
 	private String defineNodeName(final Node node) throws RepositoryException {
-		String result;
 		String intitialFirstName = node.getProperty("firstName").getString();
 		String firstName = StringUtils.isNotBlank(intitialFirstName) ? intitialFirstName.trim() : intitialFirstName;
-
-		if (StringUtils.isNotBlank(firstName)) {
-			String lastName = node.getProperty("lastName").getString().trim();
-			result = Path.getValidatedLabel((firstName.charAt(0) + lastName.replaceAll("\\s+", "")).toLowerCase());
-		} else {
-			log.debug("Incomplete wordpress userdetails");
-			result = "Anonymous";
-		}
-		return result;
+		String lastName = node.getProperty("lastName").getString().trim();
+		return Path.getValidatedLabel((firstName.charAt(0) + lastName.replaceAll("\\s+", "")).toLowerCase());
 	}
 
 	/**
@@ -401,14 +393,8 @@ public class SaveWordpressBlogDialogAction extends AbstractAction<SaveWordpressB
 	private void finishImport() throws ActionExecutionException {
 		try {
 			blogSession.save();
-
-			if (shouldImportContacts) {
-				contactSession.save();
-			}
-
-			if (shouldImportImages) {
-				damSession.save();
-			}
+			contactSession.save();
+			if (shouldImportImages) damSession.save();
 			BlogPostImageImporter.cleanRecentUrlList();
 			callback.onSuccess(getDefinition().getName());
 			shell.openNotification(MessageStyleTypeEnum.INFO, true, "Import completed successfully.");
@@ -426,14 +412,8 @@ public class SaveWordpressBlogDialogAction extends AbstractAction<SaveWordpressB
 	private void cancelImport() throws ActionExecutionException {
 		try {
 			blogSession.refresh(false);
-
-			if (shouldImportContacts) {
-				contactSession.refresh(false);
-			}
-
-			if (shouldImportImages) {
-				damSession.refresh(false);
-			}
+			contactSession.refresh(false);
+			if (shouldImportImages) damSession.refresh(false);
 			BlogPostImageImporter.cleanRecentUrlList();
 			callback.onCancel();
 		} catch (RepositoryException e) {
