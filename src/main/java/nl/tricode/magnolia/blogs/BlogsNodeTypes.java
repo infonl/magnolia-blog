@@ -35,6 +35,7 @@ public class BlogsNodeTypes {
         public static final String FOLDER = NodeTypes.MGNL_PREFIX + "blogsFolder";
 
         // Property Name
+		public static final String PROPERTY_WORDPRESS_POST_ID = "wp_post_id";
         public static final String PROPERTY_TITLE = "title";
         public static final String PROPERTY_MESSAGE = "message";
         public static final String PROPERTY_AUTHOR = "author";

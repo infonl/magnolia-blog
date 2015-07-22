@@ -168,6 +168,8 @@ public class SaveWordpressBlogDialogAction extends AbstractAction<SaveWordpressB
 
 		Vector<Object> request = new Vector<Object>();
 		Vector<String> expectedReturnValues = new Vector<String>();
+
+		expectedReturnValues.addElement("post_id");
 		expectedReturnValues.addElement("post_content");
 		expectedReturnValues.addElement("post_title");
 		expectedReturnValues.addElement("post_author");
@@ -196,6 +198,7 @@ public class SaveWordpressBlogDialogAction extends AbstractAction<SaveWordpressB
 	 */
 	private void processPost(Hashtable<String, Object> blogPost) throws ActionExecutionException {
 		String name = (String) blogPost.get("post_name");
+		String wp_post_id = (String) blogPost.get("post_id");
 		String title = (String) blogPost.get("post_title");
 		Calendar date = Calendar.getInstance();
 		date.setTime((Date) blogPost.get("post_date"));
@@ -213,8 +216,9 @@ public class SaveWordpressBlogDialogAction extends AbstractAction<SaveWordpressB
 				message = contentProcessor.startImporting();
 			}
 
-			log.debug("Process blog [" + title + "].");
+			log.debug("Process blogpost with title [" + title + "].");
 			Node blogPostNode = blogSession.getRootNode().addNode("temporaryBlogPostNodeName", BlogsNodeTypes.Blog.NAME);
+			blogPostNode.setProperty(BlogsNodeTypes.Blog.PROPERTY_WORDPRESS_POST_ID, wp_post_id);
 			blogPostNode.setProperty(BlogsNodeTypes.Blog.PROPERTY_TITLE, title);
 			blogPostNode.setProperty(BlogsNodeTypes.Blog.PROPERTY_MESSAGE, message);
 

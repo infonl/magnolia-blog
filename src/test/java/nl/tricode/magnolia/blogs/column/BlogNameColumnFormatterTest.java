@@ -120,6 +120,7 @@ public class BlogNameColumnFormatterTest {
     public void testGenerateCellWithBlogNode() throws Exception {
         Object itemId = "1";
         String blogTitle = "blog title";
+		String blogWPPostId = "123";
 
         JcrItemAdapter mockItem = mock(JcrItemAdapter.class);
         Node mockNode = mock(Node.class);
@@ -129,6 +130,7 @@ public class BlogNameColumnFormatterTest {
         doReturn(true).when(mockItem).isNode();
         doReturn(true).when(mockNode).isNode();
         doReturnIsNodeType(mockNode, BlogsNodeTypes.Blog.NAME);
+		doReturnProperty(mockNode, BlogsNodeTypes.Blog.PROPERTY_WORDPRESS_POST_ID, blogWPPostId);
         doReturnProperty(mockNode, BlogsNodeTypes.Blog.PROPERTY_TITLE, blogTitle);
 
         Object result = formatter.generateCell(mockTable, itemId, null);
