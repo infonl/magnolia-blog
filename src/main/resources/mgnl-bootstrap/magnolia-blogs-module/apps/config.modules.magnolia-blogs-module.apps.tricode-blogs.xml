@@ -553,10 +553,13 @@
             <sv:value>activation</sv:value>
           </sv:property>
           <sv:property sv:name="class" sv:type="String">
-            <sv:value>info.magnolia.ui.framework.action.ActivationActionDefinition</sv:value>
+            <sv:value>info.magnolia.module.workflow.action.OpenPublicationDialogActionDefinition</sv:value>
           </sv:property>
           <sv:property sv:name="command" sv:type="String">
             <sv:value>activateBlogPost</sv:value>
+          </sv:property>
+          <sv:property sv:name="extends" sv:type="String">
+            <sv:value>/modules/workflow/generic/actions/schedulePublication</sv:value>
           </sv:property>
           <sv:property sv:name="icon" sv:type="String">
             <sv:value>icon-publish</sv:value>
@@ -580,7 +583,7 @@
             <sv:value>superuser</sv:value>
           </sv:property>
           <sv:property sv:name="mgnl:lastModified" sv:type="Date">
-            <sv:value>2015-07-06T13:57:39.709+02:00</sv:value>
+            <sv:value>2015-07-22T19:47:37.220+02:00</sv:value>
           </sv:property>
           <sv:property sv:name="mgnl:lastModifiedBy" sv:type="String">
             <sv:value>superuser</sv:value>
